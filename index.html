@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roulette avec redirection</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Winwheel.js/2.7.0/Winwheel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <style>
+        canvas {
+            background-color: #f5f5f5;
+            border: 5px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="500"></canvas>
+<button id="spinButton" onclick="startSpin()">Lancer la roue</button>
+
+<script>
+    // Configuration de la roue avec les segments
+    let wheel = new Winwheel({
+        'canvasId': 'canvas',
+        'numSegments': 4,
+        'segments': [
+            {'fillStyle': '#eae56f', 'text': '-10% de réduction'},
+            {'fillStyle': '#89f26e', 'text': 'Boisson offerte'},
+            {'fillStyle': '#7de6ef', 'text': 'Dessert offert'},
+            {'fillStyle': '#e7706f', 'text': 'Perdu'}
+        ],
+        'animation': {
+            'type': 'spinToStop',
+            'duration': 5,
+            'spins': 8,
+            'callbackFinished': 'displayResult'
+        }
+    });
+
+    // Fonction de lancement de la roue
+    function startSpin() {
+        wheel.startAnimation();
+    }
+
+    // Fonction appelée lorsque la roue s'arrête
+    function displayResult(indicatedSegment) {
+        alert("Vous avez gagné : " + indicatedSegment.text);
+        
+        // Redirection après le spin, quel que soit le résultat
+        window.location.href = 'https://forms.gle/b3nFvDyYFm57Ubju9';
+    }
+</script>
+
+</body>
+</html>
