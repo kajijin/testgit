@@ -1,16 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roulette avec redirection</title>
+    <title>Roulette de la Chance</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Winwheel.js/2.7.0/Winwheel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <style>
         canvas {
             background-color: #f5f5f5;
             border: 5px solid #ccc;
+        }
+        #spinButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -20,7 +23,7 @@
 <button id="spinButton" onclick="startSpin()">Lancer la roue</button>
 
 <script>
-    // Configuration de la roue avec les segments
+    // Création de la roue avec Winwheel.js
     let wheel = new Winwheel({
         'canvasId': 'canvas',
         'numSegments': 4,
@@ -41,14 +44,13 @@
     // Fonction de lancement de la roue
     function startSpin() {
         wheel.startAnimation();
+        document.getElementById("spinButton").disabled = true; // Désactive le bouton
     }
 
     // Fonction appelée lorsque la roue s'arrête
     function displayResult(indicatedSegment) {
         alert("Vous avez gagné : " + indicatedSegment.text);
-        
-        // Redirection après le spin, quel que soit le résultat
-        window.location.href = 'https://forms.gle/b3nFvDyYFm57Ubju9';
+        window.location.href = 'https://forms.gle/b3nFvDyYFm57Ubju9'; // Redirection après le spin
     }
 </script>
 
